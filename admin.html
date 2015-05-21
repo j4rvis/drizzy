@@ -1,0 +1,14 @@
+<template name="admin">
+	<form class="addQuestion">
+	  	<input type="text" name="text">
+	  	<button>OK</button>
+  	</form>
+  	
+   	{{#each questions}}
+    	{{> question}}
+    {{/each}}
+</template>
+
+<template name="question">
+	<p>{{text}}</p>
+</template>
