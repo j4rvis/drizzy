@@ -1,9 +1,14 @@
 <template name="admin">
 	<form class="addQuestion">
 	  	<input type="text" name="text">
-	  	<button>OK</button>
+	  	<input type="text" name="answer1">
+	  	<input type="text" name="answer2">
+	  	<input type="text" name="answer3">
+	  	<input type="text" name="answer4">
+	  	<input type="checkbox" name="index">
+	  	<button type="submit">OK</button>
   	</form>
-  	
+
    	{{#each questions}}
     	{{> question}}
     {{/each}}
@@ -11,4 +16,9 @@
 
 <template name="question">
 	<p>{{text}}</p>
+	<p>{{answer1}}</p>
+	<p>{{answer2}}</p>
+	<p>{{answer3}}</p>
+	<p>{{answer4}}</p>
+	<button id="deleteQuestion">delete</button>
 </template>
