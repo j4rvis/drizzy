@@ -10,24 +10,29 @@ if (Meteor.isClient) {
 
   Template.admin.events({
     'submit .addQuestion': function (event) {
-    
-    var question = {
-      text: event.target.text.value,
-      answer1: event.target.answer1.value,
-      answer2: event.target.answer2.value,
-      answer3: event.target.answer3.value,
-      answer4: event.target.answer4.value,
-      index: event.target.index.value
-    };
 
-    Meteor.call("addQuestion", question);
-    event.target.text.value = "";
-    event.target.answer1.value = "";
-    event.target.answer2.value = "";
-    event.target.answer3.value = "";
-    event.target.answer4.value = "";
+      var question = {
+        text: event.target.text.value,
+        answer1: event.target.answer1.value,
+        answer2: event.target.answer2.value,
+        answer3: event.target.answer3.value,
+        answer4: event.target.answer4.value,
+        index: event.target.index.value
+      };
 
-    return false; 
+      Meteor.call("addQuestion", question);
+      event.target.text.value = "";
+      event.target.answer1.value = "";
+      event.target.answer2.value = "";
+      event.target.answer3.value = "";
+      event.target.answer4.value = "";
+
+      return false;
+    }
+  });
+
+  Template.question.helpers({
+    'submit .addQuestion': function () {
     }
   });
 
@@ -59,8 +64,4 @@ Meteor.methods({
   deleteQuestion: function (questionId) {
     Questions.remove(questionId);
   }
-});
-
-Router.route('/admin', function () {
-  this.render('admin');
 });
