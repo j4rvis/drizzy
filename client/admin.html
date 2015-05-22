@@ -1,4 +1,10 @@
-<template name="admin">
+<template name="admin_view">
+	<button id="questions">Fragen</button>
+	<button id="users">Benutzer</button>
+	<button id="start">{{#if gameIsRunning}}Stop{{else}}Start{{/if}}</button>
+</template>
+
+<template name="questions_view">
 	<form class="addQuestion">
 	  	<input type="text" name="text">
 	  	<input type="text" name="answer1">

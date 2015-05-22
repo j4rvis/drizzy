@@ -4,3 +4,6 @@ Meteor.publish("users", function(){
 Meteor.publish("questions", function(){
   return Questions.find({});
 });
+Meteor.publish("system", function(){
+  return System.find({});
+});

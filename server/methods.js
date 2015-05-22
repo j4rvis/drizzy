@@ -21,5 +21,14 @@ Meteor.methods({
   },
   deleteQuestion: function (questionId) {
     Questions.remove(questionId);
+  },
+  startGame: function(){
+    var currentValue;
+    var cursor = System.find({name: "gameStarted"});
+    cursor.forEach(function (system) {
+      currentValue = system.value;
+    });
+
+    System.update({name: "gameStarted"}, {$set: {value: !currentValue}});
   }
 });

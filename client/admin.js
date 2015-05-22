@@ -1,12 +1,33 @@
-Meteor.subscribe("questions")
+Meteor.subscribe("questions");
+Meteor.subscribe("system");
 
-Template.admin.helpers({
-  questions: function () {
-    return Questions.find({});
+Template.admin_view.events({
+  'click #questions': function () {
+    Router.go('/admin/questions');
+  },
+  'click #users': function () {
+
+  },
+  'click #start': function () {
+    Meteor.call("startGame");
   }
 });
 
-Template.admin.events({
+Template.admin_view.helpers({
+  gameIsRunning: function () {
+    var system = System.findOne({name: "gameStarted"});
+    console.log(system.value);
+    return system.value;
+  }
+});
+
+Template.questions_view.helpers({
+  questions: function () {
+    return Questions.find({}, {sort: {createdAt: -1}});
+  }
+});
+
+Template.questions_view.events({
   'submit .addQuestion': function (event) {
 
     var question = {
@@ -40,3 +61,8 @@ Template.question.events({
   }
 });
 
+Meteor.startup(function () {
+  if (System.find({name: "gameStarted"}).count() == 0) {
+    System.insert({name: "gameStarted", value: false});
+  }
+});
