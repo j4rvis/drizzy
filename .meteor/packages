@@ -5,5 +5,5 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
 iron:router
+u2622:persistent-session
