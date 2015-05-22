@@ -6,12 +6,15 @@
 
 <template name="questions_view">
 	<form class="addQuestion">
-	  	<input type="text" name="text">
-	  	<input type="text" name="answer1">
-	  	<input type="text" name="answer2">
-	  	<input type="text" name="answer3">
-	  	<input type="text" name="answer4">
-	  	<input type="checkbox" name="index">
+	  	<textarea class="form-control floating-label" placeholder="Frage" type="text" name="text"></textarea>
+	  	<input class="checkbox" type="checkbox" name="index">
+	  	<textarea class="form-control floating-label" placeholder="Antwort 1" type="text" name="answer1"></textarea>
+	  	<input class="checkbox" type="checkbox" name="index">
+	  	<textarea class="form-control floating-label" placeholder="Antwort 2" type="text" name="answer2"></textarea>
+	  	<input class="checkbox" type="checkbox" name="index">
+	  	<textarea class="form-control floating-label" placeholder="Antwort 3" type="text" name="answer3"></textarea>
+	  	<input class="checkbox" type="checkbox" name="index">
+	  	<textarea class="form-control floating-label" placeholder="Antwort 4" type="text" name="answer4"></textarea>
 	  	<button type="submit">OK</button>
   	</form>
 

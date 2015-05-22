@@ -1,3 +1,5 @@
+$.material.init();
+
 Meteor.subscribe('users', function(){
   var current_user = Session.get('user');
   var user_exists = Users.findOne({name: Session.get('user')});
