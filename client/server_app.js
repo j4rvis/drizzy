@@ -9,9 +9,15 @@ Template.server_app.helpers({
   }
 });
 
-Template.server_app.events({
+Template.user.events({
   'click button': function(event){
     Meteor.call("deleteUser", event.target.previousElementSibling.textContent);
     return false;
+  }
+});
+Template.server_app.events({
+  'click button': function(){
+    Router.go("game");
+    return false
   }
 })

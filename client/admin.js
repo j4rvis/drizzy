@@ -1,3 +1,5 @@
+Meteor.subscribe("questions")
+
 Template.admin.helpers({
   questions: function () {
     return Questions.find({});
