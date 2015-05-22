@@ -8,6 +8,9 @@ Meteor.methods({
   deleteUser: function(name) {
     Users.remove({name: name});
   },
+  deleteUserById: function(userId) {
+    Users.remove(userId);
+  },
   addQuestion: function (target) {
     Questions.insert({
       text: target.text,

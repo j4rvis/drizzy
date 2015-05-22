@@ -1,21 +1,18 @@
 <template name="admin_view">
-	<button id="questions">Fragen</button>
-	<button id="users">Benutzer</button>
-	<button id="start">{{#if gameIsRunning}}Stop{{else}}Start{{/if}}</button>
+	<button class="btn btn-primary btn-raised" id="questions">Fragen</button>
+	<button class="btn btn-primary btn-raised" id="users">Benutzer</button>
+	<button class="btn btn-primary btn-raised" id="start">{{#if gameIsRunning}}Stop{{else}}Start{{/if}}</button>
 </template>
 
 <template name="questions_view">
 	<form class="addQuestion">
-	  	<textarea class="form-control floating-label" placeholder="Frage" type="text" name="text"></textarea>
-	  	<input class="checkbox" type="checkbox" name="index">
-	  	<textarea class="form-control floating-label" placeholder="Antwort 1" type="text" name="answer1"></textarea>
-	  	<input class="checkbox" type="checkbox" name="index">
-	  	<textarea class="form-control floating-label" placeholder="Antwort 2" type="text" name="answer2"></textarea>
-	  	<input class="checkbox" type="checkbox" name="index">
-	  	<textarea class="form-control floating-label" placeholder="Antwort 3" type="text" name="answer3"></textarea>
-	  	<input class="checkbox" type="checkbox" name="index">
-	  	<textarea class="form-control floating-label" placeholder="Antwort 4" type="text" name="answer4"></textarea>
-	  	<button type="submit">OK</button>
+	  	<input class="form-control floating-label" placeholder="Frage" type="text" name="text">
+	  	<input class="form-control floating-label" placeholder="Antwort 1" type="text" name="answer1">
+	  	<input class="form-control floating-label" placeholder="Antwort 2" type="text" name="answer2">
+	  	<input class="form-control floating-label" placeholder="Antwort 3" type="text" name="answer3">
+	  	<input class="form-control floating-label" placeholder="Antwort 4" type="text" name="answer4">
+	  	<input class="form-control floating-label" placeholder="Index" type="text" name="index">
+	  	<button class="btn btn-primary btn-raised" type="submit">OK</button>
   	</form>
 
    	{{#each questions}}
@@ -24,10 +21,25 @@
 </template>
 
 <template name="question">
-	<p>{{text}}</p>
-	<p>{{answer1}}</p>
-	<p>{{answer2}}</p>
-	<p>{{answer3}}</p>
-	<p>{{answer4}}</p>
-	<button id="deleteQuestion">delete</button>
+	<div class="shadow-z-1">
+		<h2>{{text}}</h2>
+		<p>{{answer1}}</p>
+		<p>{{answer2}}</p>
+		<p>{{answer3}}</p>
+		<p>{{answer4}}</p>
+		<button class="btn btn-danger btn-raised" id="deleteQuestion">delete</button>	
+	</div>
+</template>
+
+<template name="users_view">
+	{{#each getAllUsers}}
+    	{{> user_detailed}}
+    {{/each}}
+</template>
+
+<template name="user_detailed">
+	<div class="shadow-z-1">
+		<h2>{{name}}</h2>
+		<button class="btn btn-danger btn-raised" id="deleteUser">delete</button>	
+	</div>
 </template>

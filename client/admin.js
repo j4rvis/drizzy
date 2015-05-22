@@ -3,10 +3,10 @@ Meteor.subscribe("system");
 
 Template.admin_view.events({
   'click #questions': function () {
-    Router.go('/admin/questions');
+    Router.go("/admin/questions");
   },
   'click #users': function () {
-
+    Router.go("/admin/users");
   },
   'click #start': function () {
     Meteor.call("startGame");
@@ -16,7 +16,6 @@ Template.admin_view.events({
 Template.admin_view.helpers({
   gameIsRunning: function () {
     var system = System.findOne({name: "gameStarted"});
-    console.log(system.value);
     return system.value;
   }
 });
@@ -50,14 +49,21 @@ Template.questions_view.events({
   }
 });
 
-Template.question.helpers({
-  'submit .addQuestion': function () {
+Template.question.events({
+  'click #deleteQuestion': function () {
+    Meteor.call("deleteQuestion", this._id);
   }
 });
 
-Template.question.events({
-  'click #deleteQuestion': function (event) {
-    Meteor.call("deleteQuestion", this._id);
+Template.users_view.helpers({
+  getAllUsers: function () {
+    return Users.find({});
+  }
+});
+
+Template.user_detailed.events({
+  'click #deleteUser': function () {
+    Meteor.call("deleteUserById", this._id);
   }
 });
 
