@@ -1,14 +1,9 @@
 <template name="server_app">
-  <h3>Number of registered Users: {{userCount}}</h3>
-  <h2>List of all users:</h2>
   {{#each users}}
     {{> user}}
   {{/each}}
-
-  <p><button>Start Game!</button></p>
 </template>
 
 <template name="user">
-  <span>{{name}}</span>
-  <button>Delete</button>
+	<button class="btn {{#if answerIndex}}btn-warning{{else}}btn-default{{/if}} btn-raised btn-lg">{{name}}</button>
 </template>

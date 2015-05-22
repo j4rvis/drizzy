@@ -2,6 +2,7 @@ Meteor.methods({
   addUser: function(name) {
     Users.insert({
       name: name,
+      answerIndex: 0,
       date: new Date()
     });
   },
@@ -10,6 +11,9 @@ Meteor.methods({
   },
   deleteUserById: function(userId) {
     Users.remove(userId);
+  },
+  updateUserAnswer: function(userName, answerIndex) {
+    Users.update({name: userName}, {$set: {answerIndex: answerIndex}})
   },
   addQuestion: function (target) {
     Questions.insert({
@@ -26,12 +30,8 @@ Meteor.methods({
     Questions.remove(questionId);
   },
   startGame: function(){
-    var currentValue;
-    var cursor = System.find({name: "gameStarted"});
-    cursor.forEach(function (system) {
-      currentValue = system.value;
-    });
-
-    System.update({name: "gameStarted"}, {$set: {value: !currentValue}});
+    var system = System.findOne({name: "gameStarted"});
+    var newValue = !system.value;
+    System.update({name: "gameStarted"}, {$set: {value: newValue}});
   }
 });
