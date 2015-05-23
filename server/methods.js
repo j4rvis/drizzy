@@ -28,10 +28,15 @@ Meteor.methods({
   },
   deleteQuestion: function (questionId) {
     Questions.remove(questionId);
+    //Test
   },
   startGame: function(){
-    var system = System.findOne({name: "gameStarted"});
-    var newValue = !system.value;
-    System.update({name: "gameStarted"}, {$set: {value: newValue}});
+    if(System.findOne({name: "gameStarted"})){
+      var system = System.findOne({name: "gameStarted"});
+      var newValue = !system.value;
+      System.update({name: "gameStarted"}, {$set: {value: newValue}});
+    }else{
+      System.insert({name: "gameStarted", value: true});
+    }
   }
 });

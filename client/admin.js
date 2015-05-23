@@ -15,8 +15,12 @@ Template.admin_view.events({
 
 Template.admin_view.helpers({
   gameIsRunning: function () {
-    var system = System.findOne({name: "gameStarted"});
-    return system.value;
+    if(System.findOne({name: "gameStarted"})){
+      var system = System.findOne({name: "gameStarted"});
+      return system.value;
+    }else{
+      return false;
+    }
   }
 });
 
