@@ -12,7 +12,12 @@ Template.server_app.helpers({
     			var question = Questions.findOne({order: system.value});
     			var htmlId = "#answer" + question.righAnswerIndex;
     			$(htmlId).addClass("btn-success");
-    			
+    			Meteor.setTimeout(function () {
+    				console.log("Timeout vorbei");
+    				Meteor.call("incrementQuestionIndex");
+    				$(htmlId).removeClass("btn-success");
+    				Meteor.call("resetUserAnswers");
+    			}, 10000);
     		}
   		}
 	});

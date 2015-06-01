@@ -16,6 +16,9 @@ Meteor.methods({
     answerIndex = Number(answerIndex);
     Users.update({name: userName}, {$set: {answerIndex: answerIndex}})
   },
+  resetUserAnswers: function () {
+    Users.update({}, {$set: {answerIndex: 0}})
+  },
   addQuestion: function (target) {
     Questions.insert({
       text: target.text,

@@ -2,7 +2,9 @@
 	<button class="btn btn-primary btn-raised" id="questions">Fragen</button>
 	<button class="btn btn-primary btn-raised" id="users">Benutzer</button>
 	<button class="btn btn-primary btn-raised" id="start">{{#if gameIsRunning}}Stop{{else}}Start{{/if}}</button>
-	<p>Aktuelle Frage: {{currentQuestion}}</p>
+	<p>Aktuelle Frage:</p>
+	<input value="{{currentQuestion}}">
+	<button id="changeCurrentQuestionIndex">OK</button>
 </template>
 
 <template name="questions_view">

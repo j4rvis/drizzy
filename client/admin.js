@@ -10,6 +10,9 @@ Template.admin_view.events({
   },
   'click #start': function () {
     Meteor.call("startGame");
+  },
+  'click #changeCurrentQuestionIndex': function () {
+    Meteor.call("setQuestionIndex", 0);
   }
 });
 

@@ -2,6 +2,14 @@ Template.game.helpers({
 	question:function () {
 		var system = System.findOne({name: "currentQuestionIndex"});
 
+		var systemChanged = System.find({}).observeChanges({
+			changed: function () {
+				$("body").removeClass("rightAnswer");
+				$("body").removeClass("wrongAnswer");
+				return Questions.findOne({order: system.value});
+			}
+		});
+
   		var maxUserCount = Users.find({}).count();
   		var query = Users.find({});	
   		var handle = query.observeChanges({
@@ -18,7 +26,6 @@ Template.game.helpers({
     				console.log("falsch geantwortet");
     				$("body").addClass("wrongAnswer");
     			}
-
     		}
   		}});
 
