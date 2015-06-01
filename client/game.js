@@ -40,11 +40,8 @@ Template.game.events({
   	}
 });
 
-function userAnsweredRight (userAnswer, currentQuestionindex) {
-	console.log("Useranswer: " + userAnswer);
-	
+function userAnsweredRight (userAnswer, currentQuestionindex) {	
 	var question = Questions.findOne({order: currentQuestionindex});
-	console.log("RightAnswer: " + question.righAnswerIndex);
 
 	if (userAnswer == question.righAnswerIndex) {
 		return true;

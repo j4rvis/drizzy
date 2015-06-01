@@ -13,7 +13,6 @@ Template.admin_view.events({
     console.log("Test");
   },
   'click #resetIndex': function () {
-    console.log("Test");
     Meteor.call("setQuestionIndex", 0);
     Meteor.call("resetUserAnswers");
   }
