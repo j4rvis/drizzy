@@ -16,7 +16,6 @@ Template.game.helpers({
   		changed: function (id, user) {
     		var answeredUserCount = Users.find({answerIndex: {$gt: 0}}).count();
     		if(answeredUserCount == maxUserCount){
-    			console.log("Alle haben geantwortet");
     			var user = Users.findOne({name: Session.get('user')});
 
     			if(userAnsweredRight(user.answerIndex, system.value)){
@@ -28,7 +27,6 @@ Template.game.helpers({
     			}
     		}
   		}});
-
 		return Questions.findOne({order: system.value});
 	}
 });

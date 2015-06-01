@@ -17,7 +17,12 @@ Meteor.methods({
     Users.update({name: userName}, {$set: {answerIndex: answerIndex}})
   },
   resetUserAnswers: function () {
-    Users.update({}, {$set: {answerIndex: 0}})
+    console.log("Test");
+    var allUsers = Users.find({});
+    allUsers.forEach(function (user) {
+      console.log(user.name);
+      Users.update({_id: user._id}, {$set: {answerIndex: 0}});
+    });
   },
   addQuestion: function (target) {
     Questions.insert({
