@@ -1,6 +1,28 @@
 Template.game.helpers({
 	question:function () {
-		return Questions.findOne({});
+		var system = System.findOne({name: "currentQuestionIndex"});
+
+  		var maxUserCount = Users.find({}).count();
+  		var query = Users.find({});	
+  		var handle = query.observeChanges({
+  		changed: function (id, user) {
+    		var answeredUserCount = Users.find({answerIndex: {$gt: 0}}).count();
+    		if(answeredUserCount == maxUserCount){
+    			console.log("Alle haben geantwortet");
+    			var user = Users.findOne({name: Session.get('user')});
+
+    			if(userAnsweredRight(user.answerIndex, system.value)){
+    				console.log("richtig geantwortet");
+    				$("body").addClass("rightAnswer");
+    			}else{
+    				console.log("falsch geantwortet");
+    				$("body").addClass("wrongAnswer");
+    			}
+
+    		}
+  		}});
+
+		return Questions.findOne({order: system.value});
 	}
 });
 
@@ -12,3 +34,16 @@ Template.game.events({
 	    return false;
   	}
 });
+
+function userAnsweredRight (userAnswer, currentQuestionindex) {
+	console.log("Useranswer: " + userAnswer);
+	
+	var question = Questions.findOne({order: currentQuestionindex});
+	console.log("RightAnswer: " + question.righAnswerIndex);
+
+	if (userAnswer == question.righAnswerIndex) {
+		return true;
+	}else{
+		return false;
+	}
+}

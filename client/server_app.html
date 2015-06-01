@@ -1,4 +1,5 @@
 <template name="server_app">
+	{{> currentQuestion}}
   {{#each users}}
     {{> user}}
   {{/each}}
@@ -6,4 +7,14 @@
 
 <template name="user">
 	<button class="btn {{#if answerIndex}}btn-warning{{else}}btn-default{{/if}} btn-raised btn-lg">{{name}}</button>
+</template>
+
+<template name="currentQuestion">
+  {{#with question}}
+	<h2>{{text}}</h2>
+	<button id="answer1" class="btn btn-primary btn-raised" name="1">{{answer1}}</button>
+	<button id="answer2" class="btn btn-primary btn-raised" name="2">{{answer2}}</button>
+	<button id="answer3" class="btn btn-primary btn-raised" name="3">{{answer3}}</button>
+	<button id="answer4" class="btn btn-primary btn-raised" name="4">{{answer4}}</button>
+  {{/with}}
 </template>

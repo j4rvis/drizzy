@@ -21,6 +21,14 @@ Template.admin_view.helpers({
     }else{
       return false;
     }
+  },
+  currentQuestion: function () {
+    if(System.findOne({name: "currentQuestionIndex"})){
+      var system = System.findOne({name: "currentQuestionIndex"});
+      return system.value;
+    }else{
+      return "Variable nicht gesetzt";
+    }
   }
 });
 
@@ -39,7 +47,8 @@ Template.questions_view.events({
       answer2: event.target.answer2.value,
       answer3: event.target.answer3.value,
       answer4: event.target.answer4.value,
-      index: event.target.index.value
+      index: event.target.index.value,
+      order: event.target.order.value
     };
 
     Meteor.call("addQuestion", question);
