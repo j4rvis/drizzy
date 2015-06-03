@@ -44,6 +44,12 @@ Template.questions_view.helpers({
 });
 
 Template.questions_view.events({
+  'click #admin': function () {
+    Router.go("/admin");
+  },
+  'click #users': function () {
+    Router.go("/admin/users");
+  },
   'submit .addQuestion': function (event) {
 
     var question = {
@@ -76,6 +82,14 @@ Template.question.events({
 Template.users_view.helpers({
   getAllUsers: function () {
     return Users.find({});
+  }
+});
+Template.users_view.events({
+  'click #admin': function () {
+    Router.go("/admin");
+  },
+  'click #questions': function () {
+    Router.go("/admin/questions");
   }
 });
 
