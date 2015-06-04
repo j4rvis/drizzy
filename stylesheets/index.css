@@ -14,8 +14,10 @@
 body {
   height: 100vh;
   padding: 20px;
+  /*background-color: white;*/
 }
 .box-field {
+  background: #fff;
   box-sizing: border-box;
   padding: 20px;
   width: 100%;
@@ -30,4 +32,35 @@ body {
   height: 15%;
   margin-top:20px;
   background-color: #009999;
+}
+.server_app{
+  width: 100%;
+}
+.server_question{
+  width: 80%;
+  background-color: #EFEFEF;
+  float: left;
+  height: 95vh;
+}
+.server_users{
+  width: 15%;
+  float: right;
+  /*background-color: red;*/
+}
+.server_question button{
+  padding:5px;
+  width: 41%;
+  float: left;
+  height: 20vh;
+  margin-left: 6%;
+  font-size: 20px;
+  white-space:normal;
+}
+.server_question h2{
+  padding: 30px;
+  height: 40vh;
+  text-align: center;
+  font-size: 40px;
+  /*color: white;*/
+  vertical-align: center;
 }

@@ -1,8 +1,15 @@
 <template name="server_app">
-	{{> currentQuestion}}
-  {{#each users}}
-    {{> user}}
-  {{/each}}
+	<div class="server_app">
+    <div class="server_question shadow-z-1">
+      {{> currentQuestion}}
+    </div>
+    <div class="server_users">
+      {{#each users}}
+        {{> user}}
+        <br>
+      {{/each}}
+    </div>
+  </div>
 </template>
 
 <template name="user">

@@ -2,6 +2,12 @@ Meteor.subscribe("questions");
 Meteor.subscribe("system");
 
 Template.questions_view.events({
+  'click #admin': function () {
+    Router.go("/admin");
+  },
+  'click #users': function () {
+    Router.go("/admin/users");
+  },
   'submit .addQuestion': function (event) {
 
     var question = {
