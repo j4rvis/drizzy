@@ -36,7 +36,6 @@ Template.admin_view.helpers({
     }
   }
 });
-
 Meteor.startup(function () {
   if (System.find({name: "gameStarted"}).count() == 0) {
     System.insert({name: "gameStarted", value: false});

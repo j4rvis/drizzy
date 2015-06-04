@@ -1,9 +1,9 @@
 <template name="game">
   {{#with question}}
-	<h2>{{text}}</h2>
-	<button class="btn btn-primary btn-raised" name="1">{{answer1}}</button>
-	<button class="btn btn-primary btn-raised" name="2">{{answer2}}</button>
-	<button class="btn btn-primary btn-raised" name="3">{{answer3}}</button>
-	<button class="btn btn-primary btn-raised" name="4">{{answer4}}</button>
+	<button class="box-field question_field">{{text}}</button>
+	<button class="box-field answer_field" name="1">{{answer1}}</button>
+	<button class="box-field answer_field" name="2">{{answer2}}</button>
+	<button class="box-field answer_field" name="3">{{answer3}}</button>
+	<button class="box-field answer_field" name="4">{{answer4}}</button>
   {{/with}}
 </template>

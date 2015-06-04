@@ -8,39 +8,44 @@
 </template>
 
 <template name="questions_view">
-	<form class="addQuestion">
-	  	<input class="form-control floating-label" placeholder="Frage" type="text" name="text">
-	  	<input class="form-control floating-label" placeholder="Antwort 1" type="text" name="answer1">
-	  	<input class="form-control floating-label" placeholder="Antwort 2" type="text" name="answer2">
-	  	<input class="form-control floating-label" placeholder="Antwort 3" type="text" name="answer3">
-	  	<input class="form-control floating-label" placeholder="Antwort 4" type="text" name="answer4">
-	  	<input class="form-control floating-label" placeholder="Richtige Antwort" type="text" name="index">
-	  	<input class="form-control floating-label" placeholder="Reihenfolge" type="text" name="order">
+	<button class="btn btn-primary btn-raised" id="admin">admin</button>
+	<button class="btn btn-primary btn-raised" id="users">Benutzer</button>
+	<div class="shadow-z-1">
+		<form class="addQuestion">
+	  	<input class="form-control input-lg" placeholder="Frage" type="text" name="text">
+	  	<input class="form-control input-lg" placeholder="Antwort 1" type="text" name="answer1">
+	  	<input class="form-control input-lg" placeholder="Antwort 2" type="text" name="answer2">
+	  	<input class="form-control input-lg" placeholder="Antwort 3" type="text" name="answer3">
+	  	<input class="form-control input-lg" placeholder="Antwort 4" type="text" name="answer4">
+	  	<input class="form-control input-lg" placeholder="Richtige Antwort" type="text" name="index">
+	  	<input class="form-control input-lg" placeholder="Reihenfolge" type="text" name="order">
 	  	<button class="btn btn-primary btn-raised" type="submit">OK</button>
-  	</form>
+		</form>
+	</div>
 
-   	{{#each questions}}
-    	{{> question}}
-    {{/each}}
+ 	{{#each questions}}
+  	{{> question}}
+  {{/each}}
 </template>
 
 <template name="question">
 	<div class="shadow-z-1">
-		<p>Reihenfolge: {{order}}</p>
-		<p>Richtige Antwort: {{righAnswerIndex}}</p>
-		<h2>{{text}}</h2>
+		<h2>{{order}}. {{text}}</h2>
 		<p>{{answer1}}</p>
 		<p>{{answer2}}</p>
 		<p>{{answer3}}</p>
 		<p>{{answer4}}</p>
-		<button class="btn btn-danger btn-raised" id="deleteQuestion">delete</button>	
+		<p>Richtige Antwort: {{righAnswerIndex}}</p>
+		<button class="btn btn-danger btn-raised" id="deleteQuestion">delete</button>
 	</div>
 </template>
 
 <template name="users_view">
+	<button class="btn btn-primary btn-raised" id="admin">admin</button>
+	<button class="btn btn-primary btn-raised" id="questions">Fragen</button>
 	{{#each getAllUsers}}
-    	{{> user_detailed}}
-    {{/each}}
+  	{{> user_detailed}}
+  {{/each}}
 </template>
 
 <template name="user_detailed">
@@ -48,6 +53,6 @@
 		<h2>{{name}}</h2>
 		<p>{{date}}</p>
 		<p>{{answerIndex}}</p>
-		<button class="btn btn-danger btn-raised" id="deleteUser">delete</button>	
+		<button class="btn btn-danger btn-raised" id="deleteUser">delete</button>
 	</div>
 </template>
