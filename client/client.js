@@ -4,6 +4,7 @@ Meteor.subscribe('users', function(){
   var current_user = Session.get('user');
   var user_exists = Users.findOne({name: Session.get('user')});
   var system = System.findOne({name: "gameStarted"});
+  console.log(current_user);
   if(current_user && current_user == user_exists.name && system.value){
     Router.go('/game');
   }
@@ -11,7 +12,8 @@ Meteor.subscribe('users', function(){
     Router.go('/client_wait');
   }
   else {
-    Session.clear();
+    // Session.clear();
+    // Router.go('/');
   }
 });
 
@@ -19,13 +21,24 @@ Template.client_wait.helpers({
   registeredUsers: function(){
     return Users.find().count();
   },
+  currentUser: function(){
+    return Session.get('user');
+  },
   gameStarted: function () {
     var system = System.findOne({name: "gameStarted"});
-    
+
     if(system.value){
       Router.go("/game");
     }
     return system.value;
+  }
+});
+
+Template.client_wait.events({
+  'click button': function(){
+    Meteor.call('deleteUser', Session.get('user'));
+    Session.clear();
+    Router.go('/');
   }
 });
 

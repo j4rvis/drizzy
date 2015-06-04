@@ -1,5 +1,6 @@
 <template name="client_wait">
-  <h3>Hang in there... it's gettin' on soon enough!</h3>
+  <h3>Hi {{currentUser}}, Hang in there... it's gettin' on soon enough!</h3>
   Current number of registered Users: {{registeredUsers}}
   <p>{{#if gameStarted}}cool{{else}}nope{{/if}}</p>
+  <button>Clear Session</button>
 </template>
