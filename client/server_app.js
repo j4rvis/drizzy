@@ -9,19 +9,23 @@ Template.server_app.helpers({
     		var answeredUserCount = Users.find({answerIndex: {$gt: 0}}).count();
         var systemTimer = System.findOne({name: "timerIsRunning"});
 
-    		if(answeredUserCount == maxUserCount && !(systemTimer.value)){
-    			var system = System.findOne({name: "currentQuestionIndex"});
+  			console.log("SystemTimer: ", systemTimer);
+        if(answeredUserCount == maxUserCount && !(systemTimer.value)){
+          console.log("All Users answered...");
+          var system = System.findOne({name: "currentQuestionIndex"});
     			var question = Questions.findOne({order: system.value});
-    			var htmlId = "#answer" + question.righAnswerIndex;
+    			// var htmlId = "#answer" + question.righAnswerIndex;
 
-    			$(htmlId).addClass("btn-success");
+    			// $(htmlId).addClass("btn-success");
           Meteor.call("setTimerIsRunning", true);
 
-    			Meteor.setTimeout(function () {
-            $(htmlId).removeClass("btn-success");
+          console.log("Timeout triggered.")
+          Meteor.setTimeout(function () {
+            console.log("Timeout worked.")
+            // $(htmlId).removeClass("btn-success");
     				Meteor.call("incrementQuestionIndex");
     				Meteor.call("resetUserAnswers");
-            Meteor.call("setTimerIsRunning", true);
+            Meteor.call("setTimerIsRunning", false);
     			}, 10000);
     		}
   		}

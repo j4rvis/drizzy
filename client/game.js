@@ -2,34 +2,34 @@ Template.game.helpers({
 	question:function () {
 		var system = System.findOne({name: "currentQuestionIndex"});
 
-		var systemChanged = System.find({}).observeChanges({
-    	changed: function () {
-    		$("body").removeClass("rightAnswer");
-    		$("body").removeClass("wrongAnswer");
-    		return Questions.findOne({order: system.value});
-    	}
-    });
+		System.find({name: "currentQuestionIndex"}).observeChanges({
+        	changed: function () {
+                console.log("changed");
+                $(".result").hide();
+        		$(".result").removeClass("rightAnswer");
+        		$(".result").removeClass("wrongAnswer");
+        		return Questions.findOne({order: system.value});
+        	}
+        });
 
-  	var maxUserCount = Users.find({}).count();
-  	var query = Users.find({});
-  	var handle = query.observeChanges({
-    	changed: function (id, user) {
-    		var answeredUserCount = Users.find({answerIndex: {$gt: 0}}).count();
-    		if(answeredUserCount == maxUserCount){
-    			var user = Users.findOne({name: Session.get('user')});
+      	var maxUserCount = Users.find({}).count();
+      	var query = Users.find({});
+      	query.observeChanges({
+        	changed: function (id, user) {
+        		var answeredUserCount = Users.find({answerIndex: {$gt: 0}}).count();
+        		if(answeredUserCount == maxUserCount){
+        			var user = Users.findOne({name: Session.get('user')});
 
-    			if (userAnsweredRight(user.answerIndex, system.value)) {
-    				console.log("richtig geantwortet");
-    				$("body").addClass("rightAnswer");
-    			} else {
-    				console.log("falsch geantwortet");
-    				$("body").addClass("wrongAnswer");
-    			}
-    		}
-    	}
-    });
-    return Questions.findOne({order: system.value});
-  }
+        			if (userAnsweredRight(user.answerIndex, system.value)) {
+                        $(".result").show().addClass("rightAnswer");
+                    } else {
+                        $(".result").show().addClass("wrongAnswer");
+        			}
+        		}
+        	}
+        });
+        return Questions.findOne({order: system.value});
+    }
 });
 
 Template.game.events({
