@@ -61,5 +61,12 @@ Meteor.methods({
     }else{
       System.insert({name: "currentQuestionIndex", value: 0});
     }
+  },
+  setTimerIsRunning: function (isRunning) {
+    if(System.findOne({name: "timerIsRunning"})){
+      System.update({name: "timerIsRunning"}, {$set: {value: isRunning}});
+    }else{
+      System.insert({name: "timerIsRunning", value: isRunning});
+    }
   }
 });

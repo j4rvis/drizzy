@@ -7,17 +7,21 @@ Template.server_app.helpers({
   	var handle = query.observeChanges({
   		changed: function (id, user) {
     		var answeredUserCount = Users.find({answerIndex: {$gt: 0}}).count();
+        var systemTimer = System.findOne({name: "timerIsRunning"});
 
-    		if(answeredUserCount == maxUserCount){
+    		if(answeredUserCount == maxUserCount && !(systemTimer.value)){
     			var system = System.findOne({name: "currentQuestionIndex"});
     			var question = Questions.findOne({order: system.value});
     			var htmlId = "#answer" + question.righAnswerIndex;
+
     			$(htmlId).addClass("btn-success");
-          
+          Meteor.call("setTimerIsRunning", true);
+
     			Meteor.setTimeout(function () {
+            $(htmlId).removeClass("btn-success");
     				Meteor.call("incrementQuestionIndex");
-    				$(htmlId).removeClass("btn-success");
     				Meteor.call("resetUserAnswers");
+            Meteor.call("setTimerIsRunning", true);
     			}, 10000);
     		}
   		}
