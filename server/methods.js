@@ -3,6 +3,7 @@ Meteor.methods({
     Users.insert({
       name: name,
       answerIndex: 0,
+      correctAnswers: 0,
       date: new Date()
     });
   },
@@ -15,6 +16,11 @@ Meteor.methods({
   updateUserAnswer: function(userName, answerIndex) {
     answerIndex = Number(answerIndex);
     Users.update({name: userName}, {$set: {answerIndex: answerIndex}})
+  },
+  incrementCorrectAnswerCount: function(userName) {
+    var user = Users.findOne({name: userName});
+    var count = user.correctAnswers + 1
+    Users.update({name: userName}, {$set: {correctAnswers: count}})
   },
   resetUserAnswers: function () {
     var allUsers = Users.find({});
