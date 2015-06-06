@@ -8,6 +8,7 @@ Template.game.helpers({
                 $(".result").hide();
         		$(".result").removeClass("rightAnswer");
         		$(".result").removeClass("wrongAnswer");
+                $(".result").text('');
                 $('.answer_field').removeAttr( "disabled" ).removeClass("btn-info");
         		return Questions.findOne({order: system.value});
         	}
@@ -22,8 +23,10 @@ Template.game.helpers({
 
         			if (userAnsweredRight(user.answerIndex, system.value)) {
                         $(".result").show().addClass("rightAnswer");
+                        $(".result").text('Richtig');
                     } else {
                         $(".result").show().addClass("wrongAnswer");
+                        $(".result").text('Falsch');
         			}
         		}
         	}

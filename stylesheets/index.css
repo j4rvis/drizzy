@@ -12,6 +12,10 @@
   width: 100vw;
   height: 100vh;
   z-index: 1;
+  font-size: 500%;
+  color: white;
+  text-align: center;
+  padding-top: 30%;
 }
 .form-control {
   margin-bottom: 20px;
