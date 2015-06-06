@@ -1,14 +1,18 @@
 <template name="server_app">
 	<div class="server_app">
-    <div class="server_question shadow-z-1">
-      {{> currentQuestion}}
-    </div>
-    <div class="server_users">
-      {{#each users}}
-        {{> user}}
-        <br>
-      {{/each}}
-    </div>
+    {{#if gameStarted}}
+      <div class="server_question shadow-z-1">
+        {{> currentQuestion}}
+      </div>
+      <div class="server_users">
+        {{#each users}}
+          {{> user}}
+          <br>
+        {{/each}}
+      </div>
+    {{else}}
+      <h1>Gehe zu der Seite <strong>www.game.j4rvis.de</strong> um an dem Spiel teilzunehmen.</h1>
+    {{/if}}
   </div>
 </template>
 

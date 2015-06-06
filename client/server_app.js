@@ -31,7 +31,11 @@ Template.server_app.helpers({
   		}
 	   });
     return query;
+  },
+  gameStarted: function () {
+    return System.findOne({name: "gameStarted"}).value;
   }
+
 });
 
 Template.currentQuestion.helpers({
