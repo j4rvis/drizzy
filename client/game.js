@@ -36,6 +36,8 @@ Template.game.events({
 	'click .answer_field': function(event){
 		var userName = Session.get('user');
 		var index = event.currentTarget.name;
+        $(event.currentTarget).addClass('btn-info');
+        $('.answer_field').attr( "disabled", "disabled" );;
     console.log(index);
     Meteor.call("updateUserAnswer", userName, index);
     return false;
